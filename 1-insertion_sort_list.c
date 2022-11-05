@@ -19,24 +19,26 @@ void insertion_sort_list(listint_t **list)
 		next = current->next;
 		prev = current->prev;
 		while (prev && prev->n > current->n)
+		{
 			prev = prev->prev;
 
-		if (prev != current->prev) /* Swap */
-		{
-			/* current->prev != Null as the first node is not getting sorted*/
-			current->prev->next = current->next;
-			if (current->next)
-				current->next->prev = current->prev;
-			current->prev = prev;
-			if (!prev) /* sorted place is the head */
-				current->next = *list,
-				*list = current;
-			else
-				current->next = prev->next,
-				prev->next = current;
-			/* current->next != Null as the tail is always sorted when reached*/
-			current->next->prev = current;
-			print_list(*list);
+			if (prev != current->prev) /* Swap */
+			{
+				/* current->prev != Null as the first node is not getting sorted*/
+				current->prev->next = current->next;
+				if (current->next)
+					current->next->prev = current->prev;
+				current->prev = prev;
+				if (!prev) /* sorted place is the head */
+					current->next = *list,
+					*list = current;
+				else
+					current->next = prev->next,
+					prev->next = current;
+				/* current->next != Null as the tail is always sorted when reached*/
+				current->next->prev = current;
+				print_list(*list);
+			}
 		}
 		current = next;
 	}
