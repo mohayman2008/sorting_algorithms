@@ -44,7 +44,7 @@ void sift_down(int *array, size_t size, size_t root_idx, size_t end)
 			break;
 		if (array[idx] >= array[c1] && (!c2 || array[idx] >= array[c2]))
 			break;
-		if (array[idx] < array[c1] && (!c2 || array[c1] >= array[c2]))
+		if (array[idx] < array[c1] && (!c2 || array[c1] > array[c2]))
 			swap(array + idx, array + c1),
 			idx = c1;
 		else
