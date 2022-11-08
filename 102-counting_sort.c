@@ -63,8 +63,8 @@ void counting_sort(int *array, size_t size)
 	}
 
 	for (j = ssize - 1 ; j >= 0 ; j--)
-		counts[array[i]]--,
-		output[counts[array[i]]] = array[i];
+		counts[array[j]]--,
+		output[counts[array[j]]] = array[j];
 
 	free(counts);
 	for (i = 0 ; i < size ; i++)
