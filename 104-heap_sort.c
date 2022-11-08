@@ -15,7 +15,6 @@ void swap(int *n1, int *n2)
 	*n2 = tmp;
 }
 
-
 /**
  * sift_down - heapify a heap, when only the root is in wrong order
  *		by sifting it down

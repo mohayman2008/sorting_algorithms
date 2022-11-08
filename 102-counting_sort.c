@@ -23,9 +23,7 @@ int max_int(int *array, size_t size)
 
 /**
  * counting_sort - Sorts an array of integers in ascending order using
- *		 Counting sort algorithm, using Knuth sequence
- * Note: The function don't care about stable sorting as the keys are the
- *	values that are being sorted
+ *		 Counting sort algorithm
  *
  * @array: The array to be sorted
  * @size: Number of elements in @array
@@ -33,11 +31,13 @@ int max_int(int *array, size_t size)
 void counting_sort(int *array, size_t size)
 {
 	size_t k, i;
+	ssize_t ssize, j;
 	int *counts, *output;
 
 	if (!array || size < 2)
 		return;
 
+	ssize = (ssize_t) size;
 	k = max_int(array, size);
 	counts = malloc(sizeof(*counts) * (k + 1));
 	if (!counts)
@@ -56,13 +56,13 @@ void counting_sort(int *array, size_t size)
 	print_array(counts, k + 1);
 
 	output = malloc(sizeof(*output) * size);
-	if (!counts)
+	if (!output)
 	{
 		perror("Insufficient memory");
 		return;
 	}
 
-	for (i = 0 ; i < size ; i++)
+	for (j = ssize - 1 ; j >= 0 ; j--)
 		counts[array[i]]--,
 		output[counts[array[i]]] = array[i];
 
