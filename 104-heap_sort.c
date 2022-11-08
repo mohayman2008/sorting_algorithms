@@ -32,27 +32,23 @@ void sift_down(int *array, size_t size, size_t root_idx, size_t end)
 	if (root_idx == end)
 		return;
 
-	/* printf("root_idx = %lu | end = %lu\n", root_idx, end); */
 	idx = root_idx;
-	while (idx <= end)
+	c1 = 2 * idx + 1;
+	while (c1 <= end) /* array[idx] has at least 1 child */
 	{
-		c1 = 2 * idx - root_idx + 1;
-		c2 = 2 * idx - root_idx + 2 <= end ? 2 * idx - root_idx + 2 : 0;
+		c2 = 2 * idx + 2 <= end ? 2 * idx + 2 : 0;
 
-		/* printf("idx = %lu | c1 = %lu | c2 = %lu\n", idx, c1, c2); */
-		if (c1 > end) /* array[idx] has no children */
-			break;
 		if (array[idx] >= array[c1] && (!c2 || array[idx] >= array[c2]))
 			break;
-		if (array[idx] < array[c1] && (!c2 || array[c1] > array[c2]))
+		if (array[idx] < array[c1] && (!c2 || array[c1] >= array[c2]))
 			swap(array + idx, array + c1),
 			idx = c1;
 		else
 			swap(array + idx, array + c2),
 			idx = c2;
+		c1 = 2 * idx + 1;
 		print_array(array, size);
 	}
-	/* putchar('\n'); */
 }
 
 /**
@@ -72,7 +68,7 @@ void heap_sort(int *array, size_t size)
 
 	ssize = (ssize_t) size;
 	end = ssize - 1;
-	for (i = ssize - 1 ; i >= 0 ; i--)
+	for (i = (ssize - 2) / 2 ; i >= 0 ; i--)
 		sift_down(array, size, i, end);
 
 	while (end > 0)
