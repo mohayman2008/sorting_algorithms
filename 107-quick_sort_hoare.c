@@ -26,7 +26,7 @@ void swap(int *n1, int *n2)
  * @array: The array to be sorted
  * @size: Number of elements in @array
  */
-void quick_sort_recursive(int *arr, size_t len, int *array, size_t size)
+void quick_sort_hoare_r(int *arr, size_t len, int *array, size_t size)
 {
 	size_t itr1, itr2, idx;
 	int pivot;
@@ -56,8 +56,8 @@ void quick_sort_recursive(int *arr, size_t len, int *array, size_t size)
 		print_array(arr, len);
 	}
 
-	quick_sort_recursive(arr, len, array, p_idx + 1);
-        quick_sort_recursive(arr, len, array + p_idx + 1, size - p_idx - 1);
+	quick_sort_hoare_r(arr, len, array, p_idx + 1);
+	quick_sort_hoare_r(arr, len, array + p_idx + 1, size - p_idx - 1);
 }
 
 /**
